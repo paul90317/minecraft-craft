@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"></meta>
+        <title>my website</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <style>
+            main{
+                display: flex;
+                justify-content: center;
+            }
+            .title{
+                background-color: darkolivegreen;
+                color:lightgray;
+            }
+            .content{
+                width: 700px;
+                margin-top: 25px;
+            }
+            .align{
+                width: 160px;
+                display: inline-block;
+            }
+            #btn{
+                width: fit-content;
+                background-color: gray;
+                color:white;
+                padding: 10px;
+                user-select: none;
+                margin-top: 5px;
+                border:2px black solid;
+            }
+            #btn:hover{
+                color: blueviolet;
+            }
+            #cmd{
+                background-color: black;
+                color:yellow;
+                padding: 10px;
+                margin-top: 5px;
+                width: fit-content;
+            }
+        </style>
+        <script>
+            function JSONcompress(obj){
+                return JSON.stringify(JSON.parse(obj));
+            }
+            $(document).ready(()=>{
+                $('#btn').click(()=>{
+                    let url=`/craft.zip?datapack=${$('#datapack').val()}&namespace=${$('#namespace').val()}&recipename=${$('#recipename').val()}&recipejson=`;
+                    url+=JSONcompress($('#recipejson').val())
+                    window.location.assign(url);
+                })
+                $('#cmd').click(()=>{
+                    $('#cmd').html(`recipe give @p ${$('#namespace').val()}:${$('#recipename').val()}`);
+                })
+            })
+        </script>
+    </head>
+    <body style="margin:0px;">
+        <main class=title>
+            <h1>Minecraft craft</h1>
+        </main>
+        <main>
+            <div class=content>
+                歡迎來到 minecraft craft，這個網站會引導你，製作屬於你的合成表。<br><br>
+                先到
+                <a href=https://crafting.thedestruc7i0n.ca/>該網站</a>
+                取得配方(json)內容:<br>
+                <textarea rows=14 cols=40 id='recipejson'></textarea><br>
+                接著，依序輸入:<br>
+                <span class=align>資料包名稱</span>
+                <input type="text"id='datapack'/><br>
+                <span class=align >命名空間</span>
+                <input type="text"id='namespace'/><br>
+                <span class=align >配方名稱</span>
+                <input type="text"id='recipename'/><br>
+                <a style="display: none;"></a>
+                <div id='btn'>產生檔案</div><br>
+                最後將產生的檔案在 datapacks 資料夾解壓縮，並輸入指令:<br>
+                <div id='cmd'>點我</div>
+            </div>
+        </main>
+    </body>
+</html>
