@@ -10,8 +10,7 @@ function fread(filename){
 }
 
 app.get('/', (req, res)=>{
-    res.send('hihi');
-    //res.sendFile(path.join(__dirname, '/index.htm'));
+    res.sendFile(path.join(__dirname, '/index.htm'));
 })
 
 app.get('/craft.zip',(req, res)=>{
@@ -27,6 +26,6 @@ app.get('/craft.zip',(req, res)=>{
 })
 
 //開始監聽 port 3000
-app.listen(3000, function () {
+app.listen(process.env.PORT||3000, function () {
   console.log('Example app listening on http://127.0.0.1:3000/')
 })
