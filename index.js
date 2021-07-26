@@ -16,7 +16,9 @@ app.get('/', (req, res)=>{
 app.get('/src/:file',(req,res)=>{
     res.sendFile(path.join(__dirname, '/src/',req.params.file));
 })
-
+app.get('/googleedc68a32f2606c22.html',(req,res)=>{
+    res.sendFile(path.join(__dirname, '/src/googleedc68a32f2606c22.html'));
+})
 app.get('/craft.zip',(req, res)=>{
     let zip=new jszip();
     zip.file(`${req.query.datapack}/pack.mcmeta`,fread(path.join(__dirname,'res/pack.mcmeta')))
