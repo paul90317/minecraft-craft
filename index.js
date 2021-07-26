@@ -10,7 +10,8 @@ function fread(filename){
 }
 
 app.get('/', (req, res)=>{
-    res.sendFile(path.join(__dirname, '/index.htm'));
+    res.send('hihi');
+    //res.sendFile(path.join(__dirname, '/index.htm'));
 })
 
 app.get('/craft.zip',(req, res)=>{
