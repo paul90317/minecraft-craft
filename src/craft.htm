@@ -11,6 +11,7 @@
                 return JSON.stringify(JSON.parse(obj));
             }
             $(document).ready(()=>{
+                $('#recipename').val('myrecipe'+Math.floor(Math.random()*80000));
                 $('#btn').click(()=>{
                     let url=`/craft.zip?datapack=${$('#datapack').val()}&namespace=${$('#namespace').val()}&recipename=${$('#recipename').val()}&recipejson=`;
                     url+=JSONcompress($('#recipejson').val())
@@ -41,9 +42,9 @@
                 <textarea rows=14 cols=40 id='recipejson'></textarea><br>
                 接著，依序輸入:<br>
                 <span class=align>資料包名稱</span>
-                <input type="text"id='datapack'/><br>
+                <input type="text"id='datapack'value='mydatapack'/><br>
                 <span class=align >命名空間</span>
-                <input type="text"id='namespace'/><br>
+                <input type="text"id='namespace'value='mygroup'/><br>
                 <span class=align >配方名稱</span>
                 <input type="text"id='recipename'/><br>
                 <a style="display: none;"></a>
