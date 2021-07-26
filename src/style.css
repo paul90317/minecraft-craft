@@ -1,0 +1,48 @@
+main{
+    display: flex;
+    justify-content: center;
+}
+.title{
+    background-color: darkolivegreen;
+    color:lightgray;
+}
+.content{
+    width: 700px;
+    margin-top: 25px;
+}
+.align{
+    width: 160px;
+    display: inline-block;
+}
+#btn{
+    width: fit-content;
+    background-color: gray;
+    color:white;
+    padding: 10px;
+    user-select: none;
+    margin-top: 5px;
+    border:2px black solid;
+}
+#btn:hover{
+    color: blueviolet;
+}
+#cmd{
+    background-color: black;
+    color:yellow;
+    padding: 10px;
+    margin-top: 5px;
+    width: fit-content;
+}
+.menu_bar{
+    background-color: black;
+}
+.menu_btn{
+    background-color: gray;
+    padding:10px;
+    color:white;
+    user-select: none;
+    margin-left:10px;
+}
+.menu_btn:hover{
+    color:blue;
+}

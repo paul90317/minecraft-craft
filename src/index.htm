@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"></meta>
+        <title>my website</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" type="text/css" href="/src/style.css">
+        <script>
+            $(document).ready(()=>{
+                $('#craft').click(()=>{
+                    location.assign('/src/craft.htm');
+                })
+                $('#user').click(()=>{
+                    location.assign('/src/user.htm');
+                })
+            })
+        </script>
+    </head>
+    <body style="margin:0px;">
+        <main class=title>
+            <h1>Minecraft craft</h1>
+        </main>
+        <main class='menu_bar'>
+            <div class='menu_btn'id='craft'>合成表</div>
+            <div class='menu_btn'id='user'>單帳多人遊玩</div>
+        </main>
+        <main>
+            <div class=content>
+                歡迎來到 minecraft craft，這個網站會引導你，客製化你的 minecraft。<br><br>
+                在開始之前，記得先到 <a href='https://github.com/paul90317/minecraft-craft'>github</a> 按個星星。
+            </div>
+        </main>
+    </body>
+</html>
