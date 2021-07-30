@@ -1,0 +1,13 @@
+{
+    "criteria": {
+        "cutlass_unlocked": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "{item}"
+            }
+        }
+    },
+    "rewards": {
+        "function": "{item}"
+    }
+}

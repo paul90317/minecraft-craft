@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8"></meta>
         <meta name='description'content='自訂義配方表教學，用最簡單的方式引導你打造出屬於自己的麥塊資料包伺服器，連指令都有，自訂義熔爐，合成台，營火，所有 datapacks group namespace pack.mcmeta recipes 準備工作一鍵搞定，只需下載解壓資料包，即可與朋友一同遊玩資料包伺服器。'></meta>
-        <title>Minecraft 線上自訂義配方</title>
+        <title>Minecraft 利用 craft 成就執行指令</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" type="text/css" href="/src/style.css">
         <script>
@@ -13,12 +13,11 @@
             $(document).ready(()=>{
                 $('#recipename').val('myrecipe'+Math.floor(Math.random()*80000));
                 $('#btn').click(()=>{
-                    let url=`/craft.zip?datapack=${$('#datapack').val()}&namespace=${$('#namespace').val()}&recipename=${$('#recipename').val()}&recipejson=`;
-                    url+=JSONcompress($('#recipejson').val())
+                    let url=`/craft_adv.zip?datapack=${$('#datapack').val()}&namespace=${$('#namespace').val()}&recipename=${$('#recipename').val()}&recipejson=`;
+                    url+=JSONcompress($('#recipejson').val());
+                    url+='&cmds=';
+                    url+=encodeURIComponent($('#cmds').val());
                     window.location.assign(url);
-                })
-                $('#cmd').click(()=>{
-                    $('#cmd').html(`recipe give @p ${$('#namespace').val()}:${$('#recipename').val()}`);
                 })
                 $('#menu').click(()=>{
                     location.assign('/');
@@ -35,10 +34,10 @@
         </main>
         <main>
             <div class=content>
-                歡迎來到 minecraft craft，這個頁面會引導你，製作屬於你的合成表。<br><br>
+                這個頁面會教你如何使用合成成就，執行命令，注意合成出來的物品會消失，若需要給予物品，請用 command 給予。<br><br>
                 先到
                 <a href=https://crafting.thedestruc7i0n.ca/>該網站</a>
-                取得配方(json)內容:<br>
+                取得合成方法(json):<br>
                 <textarea rows=36 cols=80 id='recipejson'>
 {
     "type": "minecraft:crafting_shaped",
@@ -71,12 +70,13 @@
                 <input type="text"id='namespace'value='mygroup'/><br>
                 <span class=align >配方名稱</span>
                 <input type="text"id='recipename'/><br>
-                <a style="display: none;"></a>
+                完成配方後執行的命令:
+                <textarea rows=14 cols=80 id='cmds'>
+give @s minecraft:diamond
+                </textarea><br>
                 <div id='btn'>產生檔案</div><br>
                 最後將產生的檔案在 <code>.minecraft\saves\[你的地圖]\datapacks</code> 資料夾解壓縮。<br>
                 如果是多人遊玩，則在 <code>[伺服器資料夾]\[你的 game-level]\datapacks</code>裡解壓縮。<br>
-                並輸入指令:<br>
-                <div id='cmd'><code>點我產生指令</code></div>
             </div>
         </main>
     </body>
