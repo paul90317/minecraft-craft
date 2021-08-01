@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"></meta>
+        <meta name='description'content='下載一個資料包模板，download a datapack module'></meta>
+        <title>Minecraft 空資料包下載</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" type="text/css" href="/src/style.css">
+        <script>
+            function JSONcompress(obj){
+                return encodeURIComponent(JSON.stringify(JSON.parse(obj)));
+            }
+            $(document).ready(()=>{
+                $('#recipename').val('myrecipe'+Math.floor(Math.random()*80000));
+                $('#btn').click(()=>{
+                    let url=`/datapack.zip?datapack=${$('#datapack').val()}`;
+                    window.location.assign(url);
+                })
+                $('#menu').click(()=>{
+                    location.assign('/');
+                })
+            })
+        </script>
+    </head>
+    <body style="margin:0px;">
+        <main class=title>
+            <h1>Minecraft craft</h1>
+        </main>
+        <main class='menu_bar'>
+            <div class='menu_btn'id='menu'>menu</div>
+        </main>
+        <main>
+            <div class=content>
+                歡迎來到 minecraft craft，你能夠在這個頁面下載空資料包。<br><br>
+                <span class=align >資料包名稱</span>
+                <input type="text"id='datapack'value='mydatapack'/><br>
+                <div id='btn'>產生檔案</div><br>
+                最後將產生的檔案在 <code>.minecraft\saves\[你的地圖]\datapacks\</code> 資料夾解壓縮。<br>
+                如果是多人遊玩，則在 <code>[伺服器資料夾]\[你的 game-level]\datapacks\</code>裡解壓縮。<br>
+            </div>
+        </main>
+    </body>
+</html>

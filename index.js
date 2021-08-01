@@ -25,33 +25,44 @@ app.get('/src/:file',(req,res)=>{
 app.get('/googleedc68a32f2606c22.html',(req,res)=>{
     res.sendFile(path.join(__dirname, '/src/googleedc68a32f2606c22.html'));
 })
-app.get('/craft.zip',(req, res)=>{
+app.get('/datapack.zip',(req,res)=>{
     let zip=new jszip();
-    zip.file(`${req.query.datapack}/pack.mcmeta`,fread(path.join(__dirname,'res/pack.mcmeta')))
-    zip.file(`${req.query.datapack}/data/${req.query.namespace}/recipes/${req.query.recipename}.json`,req.query.recipejson)
+    let name=req.query.datapack;
+    let data=fread(path.join(__dirname,'res/pack.mcmeta'));
+    zip.file(`${name}/pack.mcmeta`,data);
+    data=fread(path.join(__dirname,'res/load.json'));
+    zip.file(`${name}/data/minecraft/tags/functions/load.json`,data);
+    zip.file(`${name}/data/minecraft/tags/functions/tick.json`,data);
+    zip.generateAsync({type:"nodebuffer"})
+    .then(data=>{
+        res.send(data);
+    })
+})
+app.get('/namespace_craft.zip',(req, res)=>{
+    let zip=new jszip();
+    zip.file(`${req.query.namespace}/recipes/${req.query.recipename}.json`,req.query.recipejson)
     zip.generateAsync({type:"nodebuffer"})
     .then(data=>{
         //res.setHeader('Content-Disposition', `filename="${req.query.datapack}"`);
         res.send(data);
     });
 })
-app.get('/craft_adv.zip',(req,res)=>{
+app.get('/namespace_craftadv.zip',(req,res)=>{
     let zip=new jszip();
     let data=fread(path.join(__dirname,'res/pack.mcmeta'));
-    zip.file(`${req.query.datapack}/pack.mcmeta`,data);
     data=req.query.recipejson;
     let miditem=JSON.parse(data);
     miditem=miditem['result']['item'];
-    zip.file(`${req.query.datapack}/data/${req.query.namespace}/recipes/${req.query.recipename}.json`,data);
+    zip.file(`${req.query.namespace}/recipes/${req.query.recipename}.json`,data);
     data=fread(path.join(__dirname,'res/adv.json'));
     let item=`${req.query.namespace}:${req.query.recipename}`;
     data=allreplace(data,'{item}',item)
-    zip.file(`${req.query.datapack}/data/${req.query.namespace}/advancements/${req.query.recipename}_adv.json`,data);
+    zip.file(`${req.query.namespace}/advancements/${req.query.recipename}_adv.json`,data);
     data=fread(path.join(__dirname,'res/exp.mcfunction'));
     data=allreplace(data,'{item}',item);
     data=allreplace(data,'{miditem}',miditem);
     data=allreplace(data,'{cmds}',req.query.cmds);
-    zip.file(`${req.query.datapack}/data/${req.query.namespace}/functions/${req.query.recipename}.mcfunction`,data)
+    zip.file(`${req.query.namespace}/functions/${req.query.recipename}.mcfunction`,data)
     zip.generateAsync({type:"nodebuffer"})
     .then(data=>{
         res.send(data);

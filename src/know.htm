@@ -13,7 +13,7 @@
             $(document).ready(()=>{
                 $('#recipename').val('myrecipe'+Math.floor(Math.random()*80000));
                 $('#btn').click(()=>{
-                    let url=`/craft_adv.zip?datapack=${$('#datapack').val()}&namespace=${$('#namespace').val()}&recipename=${$('#recipename').val()}&recipejson=`;
+                    let url=`/namespace_craftadv.zip?namespace=${$('#namespace').val()}&recipename=${$('#recipename').val()}&recipejson=`;
                     url+=JSONcompress($('#recipejson').val());
                     url+='&cmds=';
                     url+=encodeURIComponent($('#cmds').val());
@@ -63,9 +63,7 @@
     }
 }
                 </textarea><br>
-                接著，依序輸入:<br>
-                <span class=align>資料包名稱</span>
-                <input type="text"id='datapack'value='mydatapack'/><br>
+                接著輸入:<br>
                 <span class=align >命名空間</span>
                 <input type="text"id='namespace'value='mygroup'/><br>
                 <span class=align >配方名稱</span>
@@ -75,8 +73,8 @@
 give @s minecraft:diamond
                 </textarea><br>
                 <div id='btn'>產生檔案</div><br>
-                最後將產生的檔案在 <code>.minecraft\saves\[你的地圖]\datapacks</code> 資料夾解壓縮。<br>
-                如果是多人遊玩，則在 <code>[伺服器資料夾]\[你的 game-level]\datapacks</code>裡解壓縮。<br>
+                最後將產生的檔案在 <code>.minecraft\saves\[你的地圖]\datapacks\[你的資料包]\data\</code> 資料夾解壓縮。<br>
+                如果是多人遊玩，則在 <code>[伺服器資料夾]\[你的 game-level]\datapacks\[你的資料包]\data\</code>裡解壓縮。<br>
             </div>
         </main>
     </body>

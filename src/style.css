@@ -26,13 +26,6 @@ main{
 #btn:hover{
     color: blueviolet;
 }
-#cmd{
-    background-color: black;
-    color:yellow;
-    padding: 10px;
-    margin-top: 5px;
-    width: fit-content;
-}
 .menu_bar{
     background-color: black;
 }
